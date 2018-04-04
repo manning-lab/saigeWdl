@@ -4,14 +4,18 @@ library(stringr)
 
 # parse in args
 args <- commandArgs(trailingOnly=T)
-plink.file <- args[1] 
-pheno.file <- args[2]
-outcome <- args[3]
-outcome.type <- args[4]
-covariate.string <- args[5]
-id.col <- args[6]
-label <- args[7]
-threads <- as.numeric(args[8])
+plink.file.bed <- args[1] 
+plink.file.bim <- args[2] 
+plink.file.fam <- args[3]
+pheno.file <- args[4]
+outcome <- args[5]
+outcome.type <- args[6]
+covariate.string <- args[7]
+id.col <- args[8]
+label <- args[9]
+threads <- as.numeric(args[10])
+
+plink.file <- sub('\\.bed$', '', plink.file.bed)
 
 covars <- unlist(str_split(covariate.string, ","))
 
@@ -34,7 +38,7 @@ if (any(!(covars %in% pheno.header))) {
 
 
 fitNULLGLMM(plinkFile = plink.file, 
-  phenoFile = pheno,
+  phenoFile = pheno.file,
   phenoCol = outcome,
   traitType = outcome.type,
   invNormalize = F,

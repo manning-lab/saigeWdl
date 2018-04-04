@@ -11,7 +11,8 @@ variance.file <- args[5]
 label <- args[6]
 min.maf <- as.numeric(args[7])
 min.mac <- as.numeric(args[8])
-out.case.control.str = args[9]
+out.case.control.str <- args[9]
+chr <- args[10]
 
 if (startsWith(tolower(out.case.control.str), "t")){
   out.case.control <- T
@@ -30,13 +31,13 @@ SPAGMMATtest(dosageFile="",
   bgenFileIndex="",
   savFile="",
   savFileIndex="",		
-  chrom="0",
+  chrom=chr,
   start=1,
   end=250000000,
   sampleFile=sample.file,
   GMMATmodelFile=null.file,
   varianceRatioFile=variance.file,
-  SAIGEOutputFile=label,
+  SAIGEOutputFile=paste(label,".txt",sep=""),
   minMAF = min.maf,
   minMAC = min.mac,
   numLinesOutput = 10000,
