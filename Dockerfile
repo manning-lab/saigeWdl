@@ -4,7 +4,7 @@ MAINTAINER TM (tmajaria@broadinstitute.org)
 
 RUN apt-get update && apt-get -y install git libcurl4-openssl-dev libssl-dev libboost-iostreams-dev
 
-RUN git clone https://github.com/tmajaria/saigeWdl.git && cd ./saigeWdl && git pull origin master
+RUN git clone https://github.com/manning-lab/saigeWdl.git && cd ./saigeWdl && git pull origin master
 
 RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > ~/.Rprofile
 RUN Rscript -e "install.packages(c('devtools', 'Rcpp', 'RcppArmadillo', 'RcppParallel', 'data.table', 'SPAtest', 'RcppEigen', 'Matrix', 'stringr'))"
