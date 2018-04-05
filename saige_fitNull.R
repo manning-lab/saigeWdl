@@ -14,6 +14,8 @@ covariate.string <- args[7]
 id.col <- args[8]
 label <- args[9]
 threads <- as.numeric(args[10])
+num.markers <- as.numeric(args[11])
+inv.normalize.str <- args[12]
 
 plink.file <- sub('\\.bed$', '', plink.file.bed)
 
@@ -36,12 +38,18 @@ if (any(!(covars %in% pheno.header))) {
   stop("One of more covariates not column names in the phenotype file, stopping.")
 }
 
+# convert invnorm to bool
+if (startsWith(tolower(inv.normalize.str),"T")) {
+  inv.normalize <- TRUE
+} else {
+  inv.normalize <- FALSE
+}
 
 fitNULLGLMM(plinkFile = plink.file, 
   phenoFile = pheno.file,
   phenoCol = outcome,
   traitType = outcome.type,
-  invNormalize = F,
+  invNormalize = inv.normalize,
   covarColList = covars,
   qCovarCol = NULL,
   sampleIDColinphenoFile = id.col,
@@ -51,7 +59,7 @@ fitNULLGLMM(plinkFile = plink.file,
   maxiterPCG=500,
   nThreads = threads,
   Cutoff = 2,
-  numMarkers = 30,
+  numMarkers = num.markers,
   skipModelFitting = F,
   outputPrefix = label)
 
