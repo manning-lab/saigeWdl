@@ -2,7 +2,7 @@ FROM r-base:3.4.4
 
 MAINTAINER TM (tmajaria@broadinstitute.org)
 
-RUN apt-get update && apt-get -y install git libcurl4-openssl-dev libssl-dev libboost-iostreams-dev
+RUN apt-get update && apt-get -y install git dstat libcurl4-openssl-dev libssl-dev libboost-iostreams-dev
 
 RUN git clone https://github.com/manning-lab/saigeWdl.git && cd ./saigeWdl && git pull origin master
 
