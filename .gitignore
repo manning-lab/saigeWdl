@@ -31,3 +31,15 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+# pheno/genotype files
+*.vcf
+*.vcf.gz
+*.vcf.tbi
+*.csv
+*.tsv
+*.ped
+*pheno*
+*.bed
+*.bim
+*.fam
